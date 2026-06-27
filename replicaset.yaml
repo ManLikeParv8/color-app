@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: webapp
-        image: nortontube/color-app:27b8279e1e2191382e130cbdf7929ef90533ca20
+        image: nortontube/color-app:db227b2a30ce5463e376d5a9e87fd7b7c8df790e
         imagePullPolicy: Always
         ports:
         - containerPort: 80
