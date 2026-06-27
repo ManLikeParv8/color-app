@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: color-app-replicaset
+  labels:
+    app: color-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: color-app
+  template:
+    metadata:
+      labels:
+        app: color-app
+    spec:
+      containers:
+      - name: webapp
+        image: color-app
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 80
+         
+        # 1. The Cable (Inside the container)
+        volumeMounts:
+        - name: app-storage
+          mountPath: /data
+
+      # 2. The Hardware (At the Pod level)
+      volumes:
+      - name: app-storage
+        persistentVolumeClaim:
+          claimName: color-app-pvc

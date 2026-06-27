@@ -1,0 +1,20 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: color-app-ingress
+spec:
+  tls:
+  - hosts:
+      - localhost
+    secretName: color-app-tls
+  rules:
+  - host: localhost
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: color-app-service
+            port:
+              number: 80
